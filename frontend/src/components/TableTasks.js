@@ -1,5 +1,5 @@
 
-function TableTasks({listTasks , showConfirmtoDeleteTask , updateTask}) {
+function TableTasks({listTasks , showConfirmtoDeleteTask , updateTask }) {
   return (
     <>
         <table border={1} className="table table-responsive-sm table-bordered table-dark table-hover">

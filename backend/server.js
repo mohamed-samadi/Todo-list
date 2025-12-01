@@ -41,16 +41,17 @@ app.delete('/api/tasks/:id', async (req, res) => {
 //   }
 // });
 
-// app.post('/api/tasks', async (req, res) => {
-//   try {
-//     const { title, description } = req.body;
-//     const result = await todoModel.createTask(title, description);
-//     res.status(201).json({ message: 'Task created', insertId: result.insertId });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: 'Failed to create task' });
-//   }
-// });
+app.post('/api/tasks', async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    console.log(title, description);
+    const result = await todoModel.createTask(title, description);
+    res.status(201).json({ message: 'Task created', insertId: result.insertId });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to create task' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

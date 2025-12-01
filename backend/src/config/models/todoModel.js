@@ -30,16 +30,16 @@ module.exports = {
     //     }
     // },
 
-    // createTask: async (title, description) => {
-    //     const connection = await pool.getConnection();
-    //     try {
-    //         const [result] = await connection.query(
-    //             "INSERT INTO tasks (title, description, is_completed) VALUES (?, ?, ?)",
-    //             [title, description, false]
-    //         );
-    //         return result;
-    //     } finally {
-    //         connection.release();
-    //     }
-    // }
+    createTask: async (title, description) =>{
+        const connection = await pool.getConnection();
+        try {
+            const [result] = await connection.query(
+                "INSERT INTO tasks (title, description) VALUES (?, ?)",
+                [title, description]
+            );
+            return result;
+        } finally {
+            connection.release();
+        }
+    }
 };
