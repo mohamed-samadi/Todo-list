@@ -1,5 +1,5 @@
 
-function TableTasks({listTasks , showConfirmtoDeleteTask , updateTask }) {
+function TableTasks({listTasks , showConfirmtoDeleteTask , showUpdateForm }) {
   return (
     <>
         <table border={1} className="table table-responsive-sm table-bordered table-dark table-hover">
@@ -23,7 +23,7 @@ function TableTasks({listTasks , showConfirmtoDeleteTask , updateTask }) {
                     <td>{task.is_completed ? "completed" : "uncompleted"}</td>
                     <td>{task.created_at}</td>
                     <td className="d-flex align-items-center justify-content-around ">
-                        <button onClick={()=>updateTask(task.id)} 
+                        <button onClick={()=>showUpdateForm(task.id)} 
                             className="btn btn-primary">update</button>
                         <button onClick={()=>showConfirmtoDeleteTask(task.id)}
                          className="btn btn-danger"  >delete</button>

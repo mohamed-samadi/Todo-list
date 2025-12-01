@@ -53,6 +53,22 @@ app.post('/api/tasks', async (req, res) => {
   }
 });
 
+app.put('/api/tasks/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { title, description, is_completed } = req.body;
+    const result = await todoModel.updateTask(id, title, description, is_completed);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json({ message: 'Task updated' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to update task' });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

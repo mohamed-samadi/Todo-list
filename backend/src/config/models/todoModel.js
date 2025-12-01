@@ -41,5 +41,19 @@ module.exports = {
         } finally {
             connection.release();
         }
+    },
+    updateTask: async (id, title, description, is_completed) => {
+        const connection = await pool.getConnection();
+        try {
+            const [result] = await connection.query(
+                "UPDATE tasks SET title = ?, description = ?, is_completed = ? WHERE id = ?",
+                [title, description, is_completed, id]
+            );
+            return result;
+        } finally {
+            connection.release();
+        }
     }
+
+
 };
