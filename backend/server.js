@@ -15,6 +15,19 @@ app.get('/api/tasks', async (req, res) => {
   }
 });
 
+app.delete('/api/tasks/:id', async (req, res) => {
+  try {
+    const id = req.params.id;      
+    const result = await todoModel.deleteTask(id);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+    res.json({ message: 'Task deleted' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete task' });
+  } 
+});
 // app.get('/api/tasks/:id', async (req, res) => {
 //   try {
 //     const id = req.params.id;

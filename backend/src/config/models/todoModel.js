@@ -11,6 +11,15 @@ module.exports = {
         }
     },
 
+    deleteTask: async (id) => {
+        const connection = await pool.getConnection();
+        try {
+            const [result] = await connection.query("DELETE FROM tasks WHERE id = ?", [id]);
+            return result;
+        } finally {
+            connection.release();
+        }
+    },
     // getTaskById: async (id) => {
     //     const connection = await pool.getConnection();
     //     try {
